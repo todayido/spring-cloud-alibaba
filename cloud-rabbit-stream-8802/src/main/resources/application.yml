@@ -1,0 +1,35 @@
+server:
+  port: 8802
+spring:
+  application:
+    name: rabbit-mq-8802
+  cloud:
+    stream:
+      binders:
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                paddword: guest
+      bindings:
+        input:
+          destination: studyExchange
+          content-type: application/json
+          binder: defaultRabbit
+          group: imomoA # 如果不配置的话，在重启的时候消息可能会丢失
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: default
+    availability-zones:
+      default: defaultZone
+    service-url:
+      defaultZone: http://localhost:7001/eureka/

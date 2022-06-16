@@ -1,0 +1,29 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/readup/springcloud-config.git
+          search-paths:
+            - springcloud-config
+          default-label: master
+          username: readup
+          password: junfeng0402Wf
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: default
+    availability-zones:
+      default: defaultZone
+    service-url:
+      defaultZone: http://localhost:7001/eureka/

@@ -1,0 +1,32 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    config:
+      label: master # 分支名称
+      name: config  # 配置文件名称
+      profile: dev  # 读取后缀名称
+      uri: http://localhost:3344 # 配置中心地址
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: default
+    availability-zones:
+      default: defaultZone
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+
+# curl -X POST http://127.0.0.1:3355/actuator/refresh 暴露地址
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

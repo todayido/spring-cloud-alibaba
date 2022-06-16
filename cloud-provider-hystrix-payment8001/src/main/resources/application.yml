@@ -1,0 +1,18 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: payment-hystrix
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: default
+    availability-zones:
+      default: defaultZone
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
